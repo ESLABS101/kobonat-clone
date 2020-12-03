@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "961922458835",
+    "project_id": "kobonat-d5f89",
+    "storage_bucket": "kobonat-d5f89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961922458835:android:79162efa5ade672dfe2026",
+        "android_client_info": {
+          "package_name": "com.sonusahu.kobonat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961922458835-6ksuthtu574qmmd6og0s7qtmtmes90dq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPAOn2nS-O7ShyLGKKVQMf18_BxZLGbUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961922458835-6ksuthtu574qmmd6og0s7qtmtmes90dq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
