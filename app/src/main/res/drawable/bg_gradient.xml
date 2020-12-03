@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+	<gradient android:startColor="@color/colorPrimaryDark" android:endColor="@color/colorPrimary" android:angle="225.0" android:centerY="@android:integer/config_shortAnimTime" android:gradientRadius="@dimen/d0dp" />
+	<corners android:radius="@dimen/d24dp" />
+	<size android:height="@dimen/d48dp" android:width="@dimen/d48dp" />
+</shape>

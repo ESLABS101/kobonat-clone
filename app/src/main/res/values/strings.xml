@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name" translatable="false">Kobonat Clone</string>
+    <string name="accept_condition" translatable="false">Accept our Terms &amp; Conditions</string>
 </resources>
