@@ -1,5 +1,6 @@
 package com.sonusahu.kobonat.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.sonusahu.kobonat.R;
 import com.sonusahu.kobonat.adapters.TabAdapter;
 import com.sonusahu.kobonat.databinding.ActivityHomeBinding;
@@ -95,6 +97,49 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                switch (item.getItemId()) {
+
+
+                    case R.id.menu_home:
+
+
+                        Toast.makeText(getApplicationContext(), "Clicked Home", Toast.LENGTH_LONG).show();
+
+                        break;
+                    case R.id.favourite_coupons:
+
+                        Toast.makeText(getApplicationContext(), "Clicked Favorite coupons", Toast.LENGTH_LONG).show();
+
+                        break;
+
+                    case R.id.redeemed_coupons:
+
+
+                        Toast.makeText(getApplicationContext(), "Clicked Redeemed coupons", Toast.LENGTH_LONG).show();
+
+                        break;
+                    case R.id.redeemed_flash:
+
+                        Toast.makeText(getApplicationContext(), "Clicked Redeemed flash", Toast.LENGTH_LONG).show();
+                        break;
+
+                    case R.id.notifications:
+
+                        Toast.makeText(getApplicationContext(), "Clicked Notifications", Toast.LENGTH_LONG).show();
+
+                        break;
+
+                    case R.id.logout:
+
+
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(HomeActivity.this, AuthActivity.class));
+                        finish();
+
+                        break;
+
+
+                }
 
                 return true;
             }

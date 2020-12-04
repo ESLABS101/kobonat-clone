@@ -45,4 +45,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="BaseTabTextApp" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="fontFamily">@font/regular</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">@dimen/scale_16sp</item>
+    </style>
+
 </resources>

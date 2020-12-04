@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -58,6 +59,9 @@ public class AuthActivity extends AppCompatActivity {
 
     private String TAG = "Auth Activity";
 
+    private FirebaseAuth.AuthStateListener authStateListener;
+
+    private AccessTokenTracker tokenTracker;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public GoogleSignInClient mGoogleSignInClient;
@@ -206,6 +210,10 @@ public class AuthActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (v.getId() == R.id.btnFacebook) {
                     binding.fbBtn.performClick();
+                    progressDialog.setTitle("Facebook sign in");
+                    progressDialog.setMessage("Sign in as Facebook");
+                    progressDialog.show();
+
                 }
             }
         });
@@ -213,6 +221,9 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 googleSetup();
+                progressDialog.setTitle("Google sign in");
+                progressDialog.setMessage("Sign in as Google");
+                progressDialog.show();
             }
         });
 
@@ -234,14 +245,41 @@ public class AuthActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancel() {
+                        Log.e(TAG, "onSuccess" + "onCancel");
 
                     }
 
                     @Override
                     public void onError(FacebookException error) {
-
+                        Log.e(TAG, "onSuccess" + error.getMessage());
                     }
                 });
+
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                if (user != null) {
+
+                    uploadUserDB();
+                }
+            }
+        };
+
+
+        tokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+
+                if (currentAccessToken == null) {
+
+                    mAuth.signOut();
+                }
+            }
+        };
 
 
     }
@@ -304,6 +342,8 @@ public class AuthActivity extends AppCompatActivity {
             }
         }
 
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
 
     }
 
@@ -335,6 +375,9 @@ public class AuthActivity extends AppCompatActivity {
 
     private void uploadUserDB() {
 
+
+
+
         FirebaseUser user = mAuth.getCurrentUser();
 
         final String email = user.getEmail();
@@ -353,17 +396,16 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                if (user != null) {
+
+                if (task.isSuccessful()) {
+
+
+                    progressDialog.dismiss();
+
                     startActivity(new Intent(AuthActivity.this, HomeActivity.class));
                     finish();
-                } else {
-
-                    Log.w(TAG, "signInWithCredential:failure" + task.getException().getMessage().toString());
-
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
-
-
                 }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -378,4 +420,20 @@ public class AuthActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (authStateListener != null) {
+
+            mAuth.removeAuthStateListener(authStateListener);
+        }
+
+    }
 }

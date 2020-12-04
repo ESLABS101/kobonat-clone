@@ -141,6 +141,7 @@
                 android:layout_height="45dp"
                 android:background="#2D343E"
                 app:tabSelectedTextColor="@color/white"
+                app:tabTextAppearance="@style/BaseTabTextApp"
                 app:tabTextColor="@color/text_gray"
 
                 >
