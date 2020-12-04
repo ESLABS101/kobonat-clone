@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/miSearch"
+        android:icon="@drawable/serach"
+        android:title="Search"
+        app:showAsAction="always" />
+   <!-- <item
+        android:id="@+id/miShorting"
+        android:icon="@drawable/shorting_icon"
+        android:title="Short"
+        app:showAsAction="always" />-->
+    <item
+        android:id="@+id/miLocation"
+        android:icon="@drawable/pin"
+        android:title="Location"
+        app:showAsAction="always" />
+<!--    <item
+        android:id="@+id/miShare"
+        android:icon="@drawable/share"
+        android:title="Share"
+        app:showAsAction="always" />-->
+</menu>

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/d160dp"
+    android:background="#ffe0e0e0"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/d16dp">
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/d56dp"
+            android:layout_height="@dimen/d56dp"
+            android:src="@drawable/user_profile" />
+
+        <LinearLayout
+            android:layout_width="@dimen/d0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d16dp"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:minHeight="@dimen/d56dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/semibold"
+                    android:maxLines="2"
+                    android:paddingTop="@dimen/d4dp"
+                    android:paddingEnd="@dimen/d8dp"
+                    android:paddingBottom="@dimen/d4dp"
+                    android:text="Welcome guest"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/scale_16sp" />
+
+                <TextView
+                    android:id="@+id/textViewAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_black_border"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/d12dp"
+                    android:paddingTop="@dimen/d4dp"
+                    android:paddingRight="@dimen/d12dp"
+                    android:paddingBottom="@dimen/d4dp"
+                    android:text="View account"
+                    android:textColor="@color/text_gray2"
+                    android:textSize="@dimen/d12dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textExpiry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/d8dp"
+                android:textColor="@color/text_gray2"
+                android:textSize="@dimen/scale_12sp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

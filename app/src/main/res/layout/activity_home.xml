@@ -1,68 +1,172 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
-    android:layout_height="match_parent">
+<?xml version='1.0' encoding='utf-8' ?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:background="@drawable/bg_gradient"
+    <data>
+
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="192dp">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <LinearLayout
+            android:id="@+id/llMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:background="@drawable/imgpsh_fullsize"
 
-            app:toolbarId="@+id/toolbar">
-
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_width="fill_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:menu="@menu/menu_main"
+                app:navigationIcon="@drawable/menu"
+                app:title=" ">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="Verification"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/scale_20sp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/imgIpromot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:padding="@dimen/d14dp"
+                        android:src="@drawable/statusbar_logo_1" />
+                </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:fillViewport="true"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:context=".activity.HomeActivity">
-
-
-            <Button
-                android:id="@+id/logOutBtn"
-                android:layout_width="@dimen/d100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="#ffffff"
+            <LinearLayout
+                android:id="@+id/llSearch"
+                android:layout_width="fill_parent"
+                android:layout_height="?actionBarSize"
                 android:gravity="center"
-                android:text="Sign out"
+                android:orientation="vertical"
+                android:tag="layout/layout_search_0"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/d44dp"
+                    android:layout_margin="@dimen/d6dp"
+                    android:background="@drawable/bg_popup_search"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgClose"
+                        android:layout_width="@dimen/d44dp"
+                        android:layout_height="@dimen/d44dp"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:padding="@dimen/d6dp"
+                        android:src="@drawable/ic_arrow_back_black_18dp" />
+
+                    <TextView
+                        android:id="@+id/editSearch"
+                        android:layout_width="@dimen/d0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d5dp"
+                        android:layout_marginRight="@dimen/d5dp"
+                        android:layout_weight="1.0"
+                        android:background="@android:color/transparent"
+                        android:hint="Search coupon"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_gray"
+                        android:textCursorDrawable="@drawable/cursor_colorprimary"
+                        android:textDirection="locale"
+                        android:textSize="@dimen/scale_16sp" />
+
+                    <FrameLayout
+                        android:layout_width="@dimen/d44dp"
+                        android:layout_height="@dimen/d44dp">
+
+                        <ImageView
+                            android:id="@+id/imgFilter"
+                            android:layout_width="@dimen/d44dp"
+                            android:layout_height="@dimen/d44dp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:padding="@dimen/d10dp"
+                            android:src="@drawable/filter"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:id="@+id/imgFilerIndicator"
+                            android:layout_width="@dimen/d8dp"
+                            android:layout_height="@dimen/d8dp"
+                            android:layout_gravity="start"
+                            android:layout_margin="@dimen/d8dp"
+                            android:src="@drawable/bg_oval_second"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/imgClear"
+                        android:layout_width="@dimen/d44dp"
+                        android:layout_height="@dimen/d44dp"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:padding="@dimen/d8dp"
+                        android:src="@drawable/ic_close_black_18dp"
+                        android:visibility="invisible" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="#2D343E"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/text_gray"
 
                 >
 
+            </com.google.android.material.tabs.TabLayout>
 
-            </Button>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.viewpager.widget.ViewPager>
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
 
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="start"
+            android:background="@android:color/white"
+            android:fitsSystemWindows="true"
+            android:scrollbars="none"
+            android:theme="@style/NavigationTheme"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/activity_main_drawer" />
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>
