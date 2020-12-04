@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">Kobonat Clone</string>
     <string name="accept_condition" translatable="false">Accept our Terms &amp; Conditions</string>
+
+
+    <string name="facebook_app_id">2666587003652083</string>
+    <string name="fb_login_protocol_scheme">fb2666587003652083</string>
+
 </resources>

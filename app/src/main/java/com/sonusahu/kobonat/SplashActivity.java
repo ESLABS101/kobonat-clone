@@ -11,13 +11,17 @@ import android.view.View;
 
 import android.view.animation.AnimationUtils;
 
-import com.sonusahu.kobonat.authentication.AuthActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.sonusahu.kobonat.activity.AuthActivity;
+import com.sonusahu.kobonat.activity.HomeActivity;
 import com.sonusahu.kobonat.databinding.ActivitySplashBinding;
 
 
 public class SplashActivity extends AppCompatActivity {
 
     ActivitySplashBinding binding;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,9 +118,20 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(SplashActivity.this, AuthActivity.class));
-                finish();
+
+                // Check if user is signed in (non-null) and update UI accordingly.
+                 user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user!=null){
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                    finish();
+                }else {
+                    startActivity(new Intent(SplashActivity.this, AuthActivity.class));
+                    finish();
+                }
+
+
             }
         }, 2200);
     }
+
 }

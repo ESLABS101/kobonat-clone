@@ -30,4 +30,11 @@
     <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="FacebookLoginButton">
+        <item name="android:textSize">@null</item>
+        <item name="background">@drawable/img_facebook</item>
+        <item name="android:layout_width">@dimen/d160dp</item>
+        <item name="android:layout_height">45dp</item>
+    </style>
 </resources>
