@@ -1,65 +1,102 @@
 package com.sonusahu.kobonat.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sonusahu.kobonat.R;
+import com.sonusahu.kobonat.adapters.CatAdapter;
+import com.sonusahu.kobonat.databinding.FragmentCouponsBinding;
+import com.sonusahu.kobonat.model.CatModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CouponsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class CouponsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    FragmentCouponsBinding binding;
+    private DatabaseReference myRef;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ProgressDialog progressDialog;
+    ArrayList<CatModel> arrayList;
+    private CatModel catModel;
 
-    public CouponsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CouponsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CouponsFragment newInstance(String param1, String param2) {
-        CouponsFragment fragment = new CouponsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_coupons, null, false);
+
+
+        progressDialog=new ProgressDialog(getActivity());
+        progressDialog.setMessage("please wait..");
+        progressDialog.show();
+
+        binding.catListRv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        binding.catListRv.setHasFixedSize(true);
+        binding.catListRv.setDrawingCacheEnabled(true);
+        binding.catListRv.setItemViewCacheSize(500);
+        binding.catListRv.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+
+        getDataDb();
+
+        return binding.getRoot();
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coupons, container, false);
+    private void getDataDb() {
+
+        myRef = FirebaseDatabase.getInstance().getReference().child("category").child("cat").child("catlist");
+        arrayList = new ArrayList<>();
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+
+                    String name = snapshot.child("cat_name").getValue(String.class);
+                    String ic_url = snapshot.child("ic_url").getValue(String.class);
+                    String pic_url = snapshot.child("pic_url").getValue(String.class);
+
+                    arrayList.add(new CatModel(name.toString(), ic_url, pic_url));
+
+                }
+
+                CatAdapter catAdapter = new CatAdapter(arrayList, getActivity());
+                binding.catListRv.setAdapter(catAdapter);
+
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e("log", "Failed to read value.", error.toException());
+                progressDialog.dismiss();
+            }
+        });
+
     }
+
+
 }
+

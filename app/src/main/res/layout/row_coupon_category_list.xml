@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/d4dp"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/d4dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_weight="1.0">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/bg_placeholder"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_placeholder_icon" />
+
+            <ImageView
+                android:id="@+id/imgCoupon"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="centerCrop" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/d4dp">
+
+            <ImageView
+                android:id="@+id/imgCategoryIcon"
+                android:layout_width="@dimen/d28dp"
+                android:layout_height="@dimen/d28dp"
+                android:padding="@dimen/d4dp" />
+
+            <View
+                android:layout_width="@dimen/d1dp"
+                android:layout_height="fill_parent"
+                android:layout_marginStart="@dimen/d4dp"
+                android:background="@color/ripple_gray" />
+
+            <TextView
+                android:id="@+id/textCategoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/d8dp"
+                android:ellipsize="end"
+                android:maxLines="1" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
