@@ -57,5 +57,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 
     // Dependency for Firebase REaltime Database
-
+    //google Map
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.libraries.places:places:2.4.0'
 }

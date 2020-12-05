@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/scrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_detail"
+    android:scrollbars="none"
+    android:tag="layout/layout_fragment_store_detail_0"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/d8dp"
+        android:layout_marginEnd="@dimen/d8dp"
+        android:layout_marginBottom="@dimen/d8dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/d144dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgStoreCover"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="@dimen/d8dp"
+                android:alpha="0.5"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="@dimen/d8dp"
+                android:alpha="0.45"
+                android:background="@drawable/bg_store_detail_top" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgStore"
+                    android:layout_width="@dimen/d56dp"
+                    android:layout_height="@dimen/d56dp"
+                    android:layout_marginStart="@dimen/d8dp"
+                    android:src="@drawable/bg_placeholder" />
+
+                <TextView
+                    android:id="@+id/textStoreNames"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_black"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/bold"
+                    android:maxLines="2"
+                    android:padding="@dimen/d8dp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/d24dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/fg_detail"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d4dp"
+                android:layout_marginBottom="@dimen/d4dp"
+                android:orientation="vertical"
+                android:padding="@dimen/d8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/d4dp"
+                    android:text="About store"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textAbout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d4dp"
+                    android:ellipsize="end"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/textViewMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/d2dp"
+                    android:paddingEnd="@dimen/d4dp"
+                    android:paddingBottom="@dimen/d4dp"
+                    android:text="View more"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/flVideos"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/d176dp" />
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/mapWrapperLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/map_height">
+
+                    <fragment
+                        android:id="@+id/map"
+                        class="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/map_height" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/viewOnMap"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </FrameLayout>
+
+            <HorizontalScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/d96dp"
+                android:scrollbars="none"
+                android:tag="binding_1">
+
+                <include layout="@layout/layout_social_contact" />
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line_coupon" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/d104dp"
+            android:background="@color/fg_detail"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnBranches"
+                android:layout_width="@dimen/d260dp"
+                android:layout_height="@dimen/d56dp"
+                android:background="@drawable/bg_coupon_savings"
+                android:fontFamily="@font/semibold"
+                android:text="Branches"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/scale_16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line_coupon" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/d104dp"
+            android:layout_marginBottom="@dimen/d8dp"
+            android:background="@drawable/bg_detail_bottom"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/d16dp"
+            android:paddingEnd="@dimen/d16dp">
+
+            <Button
+                android:id="@+id/btnSeeAllCoupons"
+                android:layout_width="@dimen/d126dp"
+                android:layout_height="@dimen/d48dp"
+                android:layout_marginEnd="@dimen/d8dp"
+                android:background="@drawable/bg_redeem"
+                android:fontFamily="@font/semibold"
+                android:text="Coupon"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/scale_16sp" />
+
+            <Button
+                android:id="@+id/btnSeeAllFlashes"
+                android:layout_width="@dimen/d126dp"
+                android:layout_height="@dimen/d48dp"
+                android:background="@drawable/bg_redeem"
+                android:fontFamily="@font/semibold"
+                android:text="Flashes"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/scale_16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="@dimen/d10dp"
+        android:layout_height="@dimen/d0dp" />
+
+    <ImageView
+        android:id="@+id/imgCall"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_call" />
+
+    <ImageView
+        android:id="@+id/imgMail"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_mail" />
+
+    <ImageView
+        android:id="@+id/imgGoogle"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_g" />
+
+    <ImageView
+        android:id="@+id/imgFacebook"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_fb" />
+
+    <ImageView
+        android:id="@+id/imgTwitter"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_twitter" />
+
+    <ImageView
+        android:id="@+id/imgSkype"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_skype" />
+
+    <ImageView
+        android:id="@+id/imgYoutube"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_youtueb" />
+
+    <ImageView
+        android:id="@+id/imgLinkdin"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_in" />
+
+    <ImageView
+        android:id="@+id/imgWeb"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_web" />
+
+    <ImageView
+        android:id="@+id/imgSnapchat"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_snapchat" />
+
+    <ImageView
+        android:id="@+id/imgInstagram"
+        android:layout_width="@dimen/d48dp"
+        android:layout_height="@dimen/d48dp"
+        android:layout_margin="@dimen/d10dp"
+        android:src="@drawable/social_insta" />
+
+    <View
+        android:layout_width="@dimen/d10dp"
+        android:layout_height="@dimen/d0dp" />
+</LinearLayout>

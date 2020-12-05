@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,7 +44,7 @@ public class CouponsFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_coupons, null, false);
 
 
-        progressDialog=new ProgressDialog(getActivity());
+        progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("please wait..");
         progressDialog.show();
 
@@ -53,6 +54,8 @@ public class CouponsFragment extends Fragment {
         binding.catListRv.setItemViewCacheSize(500);
         binding.catListRv.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
+
+        binding.catListRv.setAnimation(new AnimationUtils().loadAnimation(getActivity(),R.anim.fade_in_from_bottom));
 
         getDataDb();
 
