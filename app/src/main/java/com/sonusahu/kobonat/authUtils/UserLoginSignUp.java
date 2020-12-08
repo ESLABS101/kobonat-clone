@@ -26,17 +26,14 @@ public class UserLoginSignUp {
 
     private static final String TAG = "Auth Activity";
 
-    private FirebaseAuth mAuth;
+    public void createUserSignUp(String email, String password, String name) {
 
-    public void createUserSignUp(String email, String password,String name) {
-
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success");
-
 
                         Intent intent = new Intent(context, HomeActivity.class);
                         context.startActivity(intent);
@@ -53,8 +50,8 @@ public class UserLoginSignUp {
     }
 
 
-    public void loginUser(String email,String password){
-       FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+    public void loginUser(String email, String password) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -75,7 +72,6 @@ public class UserLoginSignUp {
 
                     }
 
-                    // ...
                 });
     }
 

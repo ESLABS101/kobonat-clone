@@ -16,7 +16,6 @@ public class TabAdapter extends FragmentPagerAdapter {
     private final ArrayList<Fragment> fragmentsList = new ArrayList<>();
     private final ArrayList<String> fragTitle = new ArrayList<>();
 
-
     public TabAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
@@ -26,10 +25,6 @@ public class TabAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         return fragmentsList.get(position);
-
-
-        // $$$$ This is the Important Part $$$$$
-        // Check to make sure that your array is not null, size is greater than 0 , current position is greater than equal to 0, and position is less than length
 
     }
 
@@ -54,7 +49,7 @@ public class TabAdapter extends FragmentPagerAdapter {
 
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         //Remove the reference when destroy it
 
 

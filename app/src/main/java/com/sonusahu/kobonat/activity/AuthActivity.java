@@ -48,7 +48,6 @@ public class AuthActivity extends AppCompatActivity {
 
 
     private String uName, uEmail, uPassword, uConfirmPass;
-    private String error = "";
     private CheckBox checkBox;
     ProgressDialog progressDialog;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -57,17 +56,12 @@ public class AuthActivity extends AppCompatActivity {
     private MaterialAlertDialogBuilder dialog;
     private UserLoginSignUp userLoginSignUp;
 
-    private String TAG = "Auth Activity";
-
+    private final String TAG = "Auth Activity";
     private FirebaseAuth.AuthStateListener authStateListener;
 
-    private AccessTokenTracker tokenTracker;
-
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public GoogleSignInClient mGoogleSignInClient;
-    private int RC_SIGN_IN = 111;
-
-    private DatabaseReference databaseReference;
+    private final int RC_SIGN_IN = 111;
 
     private CallbackManager callbackManager;
 
@@ -77,7 +71,6 @@ public class AuthActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
         FacebookSdk.sdkInitialize(this);
         userLoginSignUp = new UserLoginSignUp(AuthActivity.this);
-
 
         onClick();
         dialogBox();
@@ -115,80 +108,34 @@ public class AuthActivity extends AppCompatActivity {
 
         });
 
-        binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.btnSignUp.setOnClickListener(v -> {
 
-                uName = binding.editFirstName.getText().toString();
-                uEmail = binding.editSignUpEmail.getText().toString();
-                uPassword = binding.editSignUpPassword.getText().toString();
-                uConfirmPass = binding.editSignUpConfirmPassword.getText().toString();
+            uName = binding.editFirstName.getText().toString();
+            uEmail = binding.editSignUpEmail.getText().toString();
+            uPassword = binding.editSignUpPassword.getText().toString();
+            uConfirmPass = binding.editSignUpConfirmPassword.getText().toString();
 
 
-                if (uName.length() >= 2) {
+            if (uName.length() >= 2) {
 
-                    if (uEmail.matches(emailPattern)) {
+                if (uEmail.matches(emailPattern)) {
 
-                        if (uPassword.length() >= 6) {
+                    if (uPassword.length() >= 6) {
 
-                            if (uConfirmPass.matches(uPassword)) {
+                        if (uConfirmPass.matches(uPassword)) {
 
-                                try {
-                                    userLoginSignUp.createUserSignUp(uEmail, uConfirmPass, uName);
+                            try {
+                                userLoginSignUp.createUserSignUp(uEmail, uConfirmPass, uName);
 
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                            } else {
-
-                                dialog.setMessage("Confirm password doesn't matched with your password)");
-                                dialog.show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
 
                         } else {
 
-                            dialog.setMessage("Enter password (minimum 6-digits)");
+                            dialog.setMessage("Confirm password doesn't matched with your password)");
                             dialog.show();
                         }
-
-                    } else {
-
-                        dialog.setMessage("Please Enter a valid email address");
-                        dialog.show();
-                    }
-
-                } else {
-
-                    dialog.setMessage("Please Enter full name");
-                    dialog.show();
-                }
-
-
-            }
-        });
-        binding.btnSignin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                userLoginSignUp = new UserLoginSignUp(AuthActivity.this);
-
-                String email = binding.editEmail.getText().toString();
-                String pass = binding.editPassword.getText().toString();
-
-
-                if (email.matches(emailPattern)) {
-
-                    if (pass.length() >= 6) {
-
-
-                        try {
-                            userLoginSignUp.loginUser(email, pass);
-
-                        } catch (NullPointerException e) {
-                            e.printStackTrace();
-                        }
-
 
                     } else {
 
@@ -202,8 +149,48 @@ public class AuthActivity extends AppCompatActivity {
                     dialog.show();
                 }
 
+            } else {
 
+                dialog.setMessage("Please Enter full name");
+                dialog.show();
             }
+
+
+        });
+        binding.btnSignin.setOnClickListener(v -> {
+
+            userLoginSignUp = new UserLoginSignUp(AuthActivity.this);
+
+            String email = binding.editEmail.getText().toString();
+            String pass = binding.editPassword.getText().toString();
+
+
+            if (email.matches(emailPattern)) {
+
+                if (pass.length() >= 6) {
+
+
+                    try {
+                        userLoginSignUp.loginUser(email, pass);
+
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
+
+
+                } else {
+
+                    dialog.setMessage("Enter password (minimum 6-digits)");
+                    dialog.show();
+                }
+
+            } else {
+
+                dialog.setMessage("Please Enter a valid email address");
+                dialog.show();
+            }
+
+
         });
         binding.btnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,14 +204,11 @@ public class AuthActivity extends AppCompatActivity {
                 }
             }
         });
-        binding.btnGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                googleSetup();
-                progressDialog.setTitle("Google sign in");
-                progressDialog.setMessage("Sign in as Google");
-                progressDialog.show();
-            }
+        binding.btnGoogle.setOnClickListener(v -> {
+            googleSetup();
+            progressDialog.setTitle("Google sign in");
+            progressDialog.setMessage("Sign in as Google");
+            progressDialog.show();
         });
 
     }
@@ -256,21 +240,18 @@ public class AuthActivity extends AppCompatActivity {
                 });
 
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        authStateListener = firebaseAuth -> {
 
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if (user != null) {
+            if (user != null) {
 
-                    uploadUserDB();
-                }
+                uploadUserDB();
             }
         };
 
 
-        tokenTracker = new AccessTokenTracker() {
+        AccessTokenTracker tokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
 
@@ -289,22 +270,19 @@ public class AuthActivity extends AppCompatActivity {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            uploadUserDB();
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        uploadUserDB();
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(AuthActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        Toast.makeText(AuthActivity.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
                     }
+
                 });
     }
 
@@ -353,29 +331,21 @@ public class AuthActivity extends AppCompatActivity {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:success");
-                        uploadUserDB();
+                .addOnCompleteListener(task -> {
+                    Log.d(TAG, "signInWithCredential:success");
+                    uploadUserDB();
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                }).addOnFailureListener(e -> {
 
-                Log.w(TAG, "signInWithCredential:failure" + e.getMessage().toString());
+            Log.w(TAG, "signInWithCredential:failure" + e.getMessage());
 
-                Toast.makeText(getApplicationContext(), "GoogleVerification Failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "GoogleVerification Failed", Toast.LENGTH_LONG).show();
 
 
-            }
         });
     }
 
     private void uploadUserDB() {
-
-
 
 
         FirebaseUser user = mAuth.getCurrentUser();
@@ -385,7 +355,7 @@ public class AuthActivity extends AppCompatActivity {
         final String phoneNumber = user.getPhoneNumber();
         final Uri imgURL = user.getPhotoUrl();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         Map<String, String> map = new HashMap<>();
         map.put("Name", displayName);
         map.put("Email", email);
@@ -411,7 +381,7 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Log.w(TAG, "signInWithCredential:failure" + e.getMessage().toString());
+                Log.w(TAG, "signInWithCredential:failure" + e.getMessage());
 
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 

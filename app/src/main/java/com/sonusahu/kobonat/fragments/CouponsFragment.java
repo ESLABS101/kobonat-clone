@@ -34,7 +34,6 @@ public class CouponsFragment extends Fragment {
 
     ProgressDialog progressDialog;
     ArrayList<CatModel> arrayList;
-    private CatModel catModel;
 
     @Nullable
     @Override
@@ -54,8 +53,7 @@ public class CouponsFragment extends Fragment {
         binding.catListRv.setItemViewCacheSize(500);
         binding.catListRv.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-
-        binding.catListRv.setAnimation(new AnimationUtils().loadAnimation(getActivity(),R.anim.fade_in_from_bottom));
+        binding.catListRv.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_from_bottom));
 
         getDataDb();
 
@@ -80,7 +78,9 @@ public class CouponsFragment extends Fragment {
                     String ic_url = snapshot.child("ic_url").getValue(String.class);
                     String pic_url = snapshot.child("pic_url").getValue(String.class);
 
-                    arrayList.add(new CatModel(name.toString(), ic_url, pic_url));
+                    if (name != null) {
+                        arrayList.add(new CatModel(name, ic_url, pic_url));
+                    }
 
                 }
 
@@ -91,7 +91,7 @@ public class CouponsFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Log.e("log", "Failed to read value.", error.toException());
                 progressDialog.dismiss();

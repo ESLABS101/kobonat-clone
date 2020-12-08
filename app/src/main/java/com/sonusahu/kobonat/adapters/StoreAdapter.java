@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.VH> {
 
     ArrayList<StoreModel> arrayList;
-    private Context context;
+    private final Context context;
 
     public StoreAdapter(ArrayList<StoreModel> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -40,7 +40,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.VH> {
 
         StoreModel storeModel=arrayList.get(position);
 
-        holder.storeName.setText(storeModel.getStoreName().toString());
+        holder.storeName.setText(storeModel.getStoreName());
 
 
         Glide.with(context)
@@ -64,7 +64,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.VH> {
     public static class VH extends RecyclerView.ViewHolder {
         public TextView storeName,viewOnMap;
         ImageView storeLogo, locationBtn;
-
 
         public VH(@NonNull View itemView) {
             super(itemView);

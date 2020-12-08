@@ -20,11 +20,11 @@ import java.util.ArrayList;
 public class CatAdapter extends RecyclerView.Adapter<CatAdapter.VH> {
 
     ArrayList<CatModel> arrayList;
-    private Context context;
+    private final Context context;
 
-    public CatAdapter(ArrayList<CatModel> arrayList,Context context) {
+    public CatAdapter(ArrayList<CatModel> arrayList, Context context) {
         this.arrayList = arrayList;
-        this.context=context;
+        this.context = context;
     }
 
     @NonNull
@@ -38,9 +38,9 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.VH> {
     public void onBindViewHolder(@NonNull VH holder, int position) {
 
 
-        CatModel catModel=arrayList.get(position);
+        CatModel catModel = arrayList.get(position);
 
-        holder.catName.setText(catModel.getCatName().toString());
+        holder.catName.setText(catModel.getCatName());
 
         Glide.with(context)
                 .load(catModel.getPicUri())
@@ -63,7 +63,6 @@ public class CatAdapter extends RecyclerView.Adapter<CatAdapter.VH> {
     public static class VH extends RecyclerView.ViewHolder {
         public TextView catName;
         ImageView catImg, catIcon;
-
 
         public VH(@NonNull View itemView) {
             super(itemView);

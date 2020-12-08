@@ -2,7 +2,7 @@ package com.sonusahu.kobonat.authUtils;
 
 public class UserProfile {
 
-    String name,email,uid,password,phoneNumber,userProf;
+    String name, email, uid, password, phoneNumber, userProf;
 
     public UserProfile(String name, String email, String uid, String password) {
         this.name = name;

@@ -2,21 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
+    <data />
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <LinearLayout
             android:id="@+id/llMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/imgpsh_fullsize"
 
+            android:background="@drawable/imgpsh_fullsize"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
@@ -25,6 +24,7 @@
                 android:layout_height="?actionBarSize"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal"
+
                 android:visibility="visible"
                 app:menu="@menu/menu_main"
                 app:navigationIcon="@drawable/menu"
@@ -70,6 +70,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/d44dp"
                     android:layout_margin="@dimen/d6dp"
+                    android:layout_marginTop="30dp"
+
                     android:background="@drawable/bg_popup_search"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -135,25 +137,49 @@
             </LinearLayout>
 
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="#2D343E"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextAppearance="@style/BaseTabTextApp"
-                app:tabTextColor="@color/text_gray"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarx"
+                android:layout_width="fill_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/imgpsh_fullsize"
+                android:orientation="horizontal"
+                android:tag="layout/toolbar_0"
+                android:visibility="gone"
 
-                >
+                app:contentInsetStart="@dimen/d0dp">
 
-            </com.google.android.material.tabs.TabLayout>
+                <TextView
+                    android:id="@id/textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingTop="@dimen/d4dp"
+                    android:paddingBottom="@dimen/d4dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/scale_20sp" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
+                <ImageView
+                    android:id="@id/imgIpromot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/d14dp"
+                    android:src="@drawable/statusbar_logo_1"
+                    android:visibility="gone" />
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <FrameLayout
+                android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </androidx.viewpager.widget.ViewPager>
+            </FrameLayout>
 
         </LinearLayout>
 

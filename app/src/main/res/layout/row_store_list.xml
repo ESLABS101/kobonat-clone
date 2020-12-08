@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/flMain"
-    android:layout_width="match_parent"
+    android:layout_width="400dp"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/d8dp"
     android:background="@android:color/transparent">
@@ -37,11 +37,13 @@
                 android:layout_marginEnd="@dimen/d4dp"
                 android:layout_weight="1.0"
                 android:ellipsize="end"
+                android:gravity="center_vertical"
                 android:maxLines="2"
                 android:textColor="@color/black"
                 android:textDirection="locale" />
 
             <TextView
+                android:id="@+id/viewOnMaps"
                 android:layout_width="@dimen/d40dp"
                 android:layout_height="@dimen/d40dp"
                 android:layout_marginEnd="@dimen/d8dp"
@@ -49,7 +51,6 @@
                 android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="View"
-                android:id="@+id/viewOnMaps"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/scale_12sp" />
 

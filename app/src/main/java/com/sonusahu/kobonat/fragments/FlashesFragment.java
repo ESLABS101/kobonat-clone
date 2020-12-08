@@ -22,8 +22,6 @@ public class FlashesFragment extends Fragment {
         // Inflate the layout for this fragment
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_flashes, container, false);
 
-
-
         binding.msg.setText("There are no flashes available at this moment. \nPlease revisit later");
 
         return binding.getRoot();
